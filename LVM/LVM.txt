@@ -1,0 +1,52 @@
+
+ot@bg-centos68x64 ~]# pvs
+  PV         VG               Fmt  Attr PSize  PFree
+  /dev/sda5  vg_bgcentos68x64 lvm2 a--u 39.54g 24.52g
+  /dev/sdb1  vgpool           lvm2 a--u  9.99g  3.99g
+
+[root@bg-centos68x64 ~]# vgs
+  VG               #PV #LV #SN Attr   VSize  VFree
+  vg_bgcentos68x64   1   2   0 wz--n- 39.54g 24.52g
+  vgpool             1   2   0 wz--n-  9.99g  3.99g
+
+[root@bg-centos68x64 ~]# lvs
+  LV       VG               Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  lv_root  vg_bgcentos68x64 -wi-ao---- 13.43g
+  lv_swap  vg_bgcentos68x64 -wi-ao----  1.58g
+  lvstuff1 vgpool           -wi-ao----  3.00g
+  lvstuff2 vgpool           -wi-ao----  3.00g
+
+[root@bg-centos68x64 ~]# mount
+/dev/mapper/vg_bgcentos68x64-lv_root on / type ext4 (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+devpts on /dev/pts type devpts (rw,gid=5,mode=620)
+tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
+/dev/mapper/vgpool-lvstuff1 on /mnt/stuff1 type ext3 (rw)
+/dev/mapper/vgpool-lvstuff2 on /mnt/stuff2 type ext3 (rw)
+/dev/sda1 on /boot type ext4 (rw)
+none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
+sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)
+172.29.41.184:/exports/nfs_share on /root/nfs type nfs (rw,vers=4,addr=172.29.41.184,clientaddr=172.16.40.132)
+//172.29.41.184/cifs_share on /mount/samba type cifs (rw)
+
+[FSTAB]
+#
+# /etc/fstab
+# Created by anaconda on Mon Sep 25 05:10:43 2017
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+tmpfs                   /dev/shm                tmpfs   defaults        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults        0 0
+proc                    /proc                   proc    defaults        0 0
+/dev/mapper/vgpool-lvstuff1 /mnt/stuff1         ext3    defaults        0 0
+/dev/mapper/vgpool-lvstuff2 /mnt/stuff2         ext3    defaults        0 0
+UUID=17f95408-d0db-46be-840b-57294c1a1083   /boot ext4  defaults 1 2
+UUID=0696fde8-3c89-406d-bd25-732f6f30752f   / ext4  defaults 1 1
+UUID=77016b17-da21-4e9d-974f-ee7946511744 swap swap defaults 0 0
+
+172.29.41.184:/exports/nfs_share /root/nfs nfs defaults 0 0
+//172.29.41.184/cifs_share /mount/samba cifs rw,username=sambauser,password=rackware 0 0
