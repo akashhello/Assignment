@@ -1,0 +1,51 @@
+C:\Users\Administrator>diskshadow
+Microsoft DiskShadow version 1.0
+Copyright (C) 2013 Microsoft Corporation
+On computer:  QA-W12SQL-N1,  1/22/2018 11:22:47 PM
+
+
+DISKSHADOW> set context persistent nowriters
+
+DISKSHADOW> add volume C: alias System1
+
+DISKSHADOW> create
+Alias System1 for shadow ID {b49ffb89-b2ec-4ba5-8cf5-460a661e5125} set as enviro
+nment variable.
+Alias VSS_SHADOW_SET for shadow set ID {adb7f94e-32a4-4725-9ee0-a8fae8863500} se
+t as environment variable.
+
+Querying all shadow copies with the shadow copy set ID {adb7f94e-32a4-4725-9ee0-
+a8fae8863500}
+
+        * Shadow copy ID = {b49ffb89-b2ec-4ba5-8cf5-460a661e5125}
+%System1%
+                - Shadow copy set: {adb7f94e-32a4-4725-9ee0-a8fae8863500}
+%VSS_SHADOW_SET%
+                - Original count of shadow copies = 1
+                - Original volume name: \\?\Volume{13710370-ff58-11e7-80c9-806e6
+f6e6963}\ [C:\]
+                - Creation time: 1/22/2018 11:24:08 PM
+                - Shadow copy device name: \\?\GLOBALROOT\Device\HarddiskVolumeS
+hadowCopy1
+                - Originating machine: qa-w12sql-N1
+                - Service machine: qa-w12sql-N1
+                - Not exposed
+                - Provider ID: {b5946137-7b9f-4925-af80-51abd60b20d5}
+                - Attributes:  No_Auto_Release Persistent No_Writers Differentia
+l
+
+Number of shadow copies listed: 1
+
+DISKSHADOW> expose %System1% C:\Akash_Mount
+-> %System1% = {b49ffb89-b2ec-4ba5-8cf5-460a661e5125}
+Attempting to expose the shadow copy as local mount point C:\Akash_Mount\.
+The shadow copy was successfully exposed as C:\Akash_Mount\.
+
+DISKSHADOW> delete shadows all
+Deleting shadow copy {b49ffb89-b2ec-4ba5-8cf5-460a661e5125} on volume \\?\Volume
+{13710370-ff58-11e7-80c9-806e6f6e6963}\ from provider {b5946137-7b9f-4925-af80-5
+1abd60b20d5} [Attributes: 0x00120019]...
+
+Number of shadow copies deleted: 1
+
+DISKSHADOW>
