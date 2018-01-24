@@ -1,0 +1,1 @@
+ERROR: Failed to open connection - NT_STATUS_OBJECT_NAME_NOT_FOUND
