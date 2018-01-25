@@ -1,0 +1,13 @@
+
+// [START declaration]
+syntax = "proto2";
+package tutorial;
+
+
+// [START messages]
+message log_packet {
+	required string log_msg=1;
+}
+
+
+
