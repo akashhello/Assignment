@@ -88,13 +88,6 @@ class log_packet : public ::google::protobuf::Message /* @@protoc_insertion_poin
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const log_packet& default_instance();
 
@@ -155,8 +148,7 @@ class log_packet : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // required string log_msg = 1;
-  bool has_log_msg() const;
+  // string log_msg = 1;
   void clear_log_msg();
   static const int kLogMsgFieldNumber = 1;
   const ::std::string& log_msg() const;
@@ -172,13 +164,10 @@ class log_packet : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // @@protoc_insertion_point(class_scope:tutorial.log_packet)
  private:
-  void set_has_log_msg();
-  void clear_has_log_msg();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr log_msg_;
+  mutable int _cached_size_;
   friend struct ::protobuf_message_2eproto::TableStruct;
   friend void ::protobuf_message_2eproto::InitDefaultslog_packetImpl();
 };
@@ -193,32 +182,22 @@ class log_packet : public ::google::protobuf::Message /* @@protoc_insertion_poin
 #endif  // __GNUC__
 // log_packet
 
-// required string log_msg = 1;
-inline bool log_packet::has_log_msg() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void log_packet::set_has_log_msg() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void log_packet::clear_has_log_msg() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// string log_msg = 1;
 inline void log_packet::clear_log_msg() {
   log_msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_log_msg();
 }
 inline const ::std::string& log_packet::log_msg() const {
   // @@protoc_insertion_point(field_get:tutorial.log_packet.log_msg)
   return log_msg_.GetNoArena();
 }
 inline void log_packet::set_log_msg(const ::std::string& value) {
-  set_has_log_msg();
+  
   log_msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:tutorial.log_packet.log_msg)
 }
 #if LANG_CXX11
 inline void log_packet::set_log_msg(::std::string&& value) {
-  set_has_log_msg();
+  
   log_msg_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:tutorial.log_packet.log_msg)
@@ -226,31 +205,31 @@ inline void log_packet::set_log_msg(::std::string&& value) {
 #endif
 inline void log_packet::set_log_msg(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_log_msg();
+  
   log_msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:tutorial.log_packet.log_msg)
 }
 inline void log_packet::set_log_msg(const char* value, size_t size) {
-  set_has_log_msg();
+  
   log_msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:tutorial.log_packet.log_msg)
 }
 inline ::std::string* log_packet::mutable_log_msg() {
-  set_has_log_msg();
+  
   // @@protoc_insertion_point(field_mutable:tutorial.log_packet.log_msg)
   return log_msg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* log_packet::release_log_msg() {
   // @@protoc_insertion_point(field_release:tutorial.log_packet.log_msg)
-  clear_has_log_msg();
+  
   return log_msg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void log_packet::set_allocated_log_msg(::std::string* log_msg) {
   if (log_msg != NULL) {
-    set_has_log_msg();
+    
   } else {
-    clear_has_log_msg();
+    
   }
   log_msg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), log_msg);
   // @@protoc_insertion_point(field_set_allocated:tutorial.log_packet.log_msg)

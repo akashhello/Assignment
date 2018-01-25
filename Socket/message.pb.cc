@@ -51,16 +51,15 @@ void InitDefaultslog_packet() {
 ::google::protobuf::Metadata file_level_metadata[1];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::log_packet, _has_bits_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::log_packet, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tutorial::log_packet, log_msg_),
-  0,
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 6, sizeof(::tutorial::log_packet)},
+  { 0, -1, sizeof(::tutorial::log_packet)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -90,10 +89,10 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\rmessage.proto\022\010tutorial\"\035\n\nlog_packet\022"
-      "\017\n\007log_msg\030\001 \002(\t"
+      "\017\n\007log_msg\030\001 \001(\tb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 56);
+      descriptor, 64);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "message.proto", &protobuf_RegisterTypes);
 }
@@ -130,19 +129,18 @@ log_packet::log_packet()
 log_packet::log_packet(const log_packet& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      _has_bits_(from._has_bits_),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   log_msg_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.has_log_msg()) {
+  if (from.log_msg().size() > 0) {
     log_msg_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.log_msg_);
   }
   // @@protoc_insertion_point(copy_constructor:tutorial.log_packet)
 }
 
 void log_packet::SharedCtor() {
-  _cached_size_ = 0;
   log_msg_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
 }
 
 log_packet::~log_packet() {
@@ -176,12 +174,7 @@ void log_packet::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(!log_msg_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
-    log_msg_.UnsafeMutablePointer()->clear();
-  }
-  _has_bits_.Clear();
+  log_msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _internal_metadata_.Clear();
 }
 
@@ -195,16 +188,16 @@ bool log_packet::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string log_msg = 1;
+      // string log_msg = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_log_msg()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->log_msg().data(), static_cast<int>(this->log_msg().length()),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "tutorial.log_packet.log_msg");
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "tutorial.log_packet.log_msg"));
         } else {
           goto handle_unusual;
         }
@@ -237,20 +230,19 @@ void log_packet::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  // required string log_msg = 1;
-  if (cached_has_bits & 0x00000001u) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+  // string log_msg = 1;
+  if (this->log_msg().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->log_msg().data(), static_cast<int>(this->log_msg().length()),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "tutorial.log_packet.log_msg");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->log_msg(), output);
   }
 
-  if (_internal_metadata_.have_unknown_fields()) {
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        _internal_metadata_.unknown_fields(), output);
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
   }
   // @@protoc_insertion_point(serialize_end:tutorial.log_packet)
 }
@@ -262,21 +254,20 @@ void log_packet::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  // required string log_msg = 1;
-  if (cached_has_bits & 0x00000001u) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+  // string log_msg = 1;
+  if (this->log_msg().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->log_msg().data(), static_cast<int>(this->log_msg().length()),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "tutorial.log_packet.log_msg");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->log_msg(), target);
   }
 
-  if (_internal_metadata_.have_unknown_fields()) {
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target);
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tutorial.log_packet)
   return target;
@@ -286,17 +277,18 @@ size_t log_packet::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tutorial.log_packet)
   size_t total_size = 0;
 
-  if (_internal_metadata_.have_unknown_fields()) {
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        _internal_metadata_.unknown_fields());
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // required string log_msg = 1;
-  if (has_log_msg()) {
+  // string log_msg = 1;
+  if (this->log_msg().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->log_msg());
   }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -326,8 +318,8 @@ void log_packet::MergeFrom(const log_packet& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_log_msg()) {
-    set_has_log_msg();
+  if (from.log_msg().size() > 0) {
+
     log_msg_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.log_msg_);
   }
 }
@@ -347,7 +339,6 @@ void log_packet::CopyFrom(const log_packet& from) {
 }
 
 bool log_packet::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
   return true;
 }
 
@@ -358,7 +349,6 @@ void log_packet::Swap(log_packet* other) {
 void log_packet::InternalSwap(log_packet* other) {
   using std::swap;
   log_msg_.Swap(&other->log_msg_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }

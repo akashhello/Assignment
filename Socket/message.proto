@@ -1,12 +1,12 @@
 
 // [START declaration]
-syntax = "proto2";
+syntax = "proto3";
 package tutorial;
 
 
 // [START messages]
 message log_packet {
-	required string log_msg=1;
+	string log_msg=1;
 }
 
 
